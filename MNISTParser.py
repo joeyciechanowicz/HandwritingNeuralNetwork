@@ -1,3 +1,8 @@
+#
+# Taken from https://github.com/sorki/python-mnist
+# Added ability to specify number of images to loan to speed up development
+#
+
 import os
 import struct
 from array import array
