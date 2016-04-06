@@ -1,5 +1,4 @@
 import numpy
-import json
 
 from Steve.Layers import Layers
 
@@ -11,7 +10,7 @@ class NeuralNetwork:
         self.biases = [numpy.random.randn(y, 1) for y in self.layer_sizes[1:]]
         self.weights = [numpy.random.randn(y, x) for x, y in zip(self.layer_sizes[:-1], self.layer_sizes[1:])]
 
-    def forward(self, input_vector):
+    def forward(self, input_vector:"list of float") -> "list of float":
         x = [[y] for y in input_vector]
         for b, w in zip(self.biases, self.weights):
             dot_product = numpy.dot(w, x)
@@ -19,4 +18,8 @@ class NeuralNetwork:
             x = temp
         return x
 
+    def mini_batch(self, num_iterations: int, batch_size: int, images: list, labels: list):
 
+        for iteration in range(num_iterations):
+            for image, label in list((images[i], labels[i]) for i in numpy.random.choice(range(0, len(images)), batch_size, False)):
+                print((image, label))
